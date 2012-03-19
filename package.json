@@ -11,7 +11,8 @@
   ],
   "dependencies": {
     "commander": "0.5.2",
-    "sf": "0.1.2"
+    "sf": "0.1.2",
+    "mkdirp": "0.3.0"
   },
   "devDependencies": {
   },
