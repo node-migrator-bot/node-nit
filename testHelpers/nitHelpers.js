@@ -35,3 +35,9 @@ exports.getTestUser = function () {
     email: 'test@user.com'
   });
 };
+
+exports.replaceDates = function (str) {
+  str = str.replace(/([0-9]*?)\/([0-9]*?)\/([0-9]*?) ([0-9]*?):([0-9]*?):([0-9]*?) [AP]M/g, '--date--');
+  return str;
+};
+

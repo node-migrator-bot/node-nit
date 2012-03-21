@@ -1,0 +1,67 @@
+'use strict';
+
+var CommentAction = require('../../lib/actions/comment');
+var nit = require('../../index');
+var nitHelpers = require('../../testHelpers/nitHelpers');
+var fs = require('fs');
+
+module.exports = {
+  'setUp': function (callback) {
+    var self = this;
+    nitHelpers.createTempNitDirectory({}, function (err, dir) {
+      if (err) {
+        return callback(err);
+      }
+      self.dir = dir;
+      nitHelpers.createTask(self.dir, function (err, task) {
+        if (err) {
+          return callback(err);
+        }
+        self.task = task;
+        callback();
+      });
+    });
+  },
+
+  'comment task': function (test) {
+    var self = this;
+    var action = new CommentAction();
+    var prefs = {
+      user: nitHelpers.getTestUser()
+    };
+    var commander = {
+      verbose: true,
+      args: [
+        this.task.id,
+        "first comment"
+      ]
+    };
+    var tracker = new nit.IssueTracker(this.dir);
+    action.cliRun(prefs, commander, tracker, function (err) {
+      if (err) {
+        throw err;
+      }
+      fs.readFile(self.task.filename, 'utf8', function (err, data) {
+        if (err) {
+          throw err;
+        }
+        var expected = [
+          "Title: ",
+          "Status: Open",
+          "Assigned To: ",
+          "Created By: test user <test@user.com>",
+          "Created Date: 3/21/2012 05:15:43 PM",
+          "Modified Date: 3/21/2012 05:15:43 PM",
+          "Description: ",
+          "Comments:",
+          " - 3/21/2012 05:15:43 PM: test user <test@user.com>: first comment",
+          ""
+        ].join('\n');
+        expected = nitHelpers.replaceDates(expected);
+        data = nitHelpers.replaceDates(data);
+        test.equals(expected, data);
+        test.done();
+      });
+    });
+  }
+};
