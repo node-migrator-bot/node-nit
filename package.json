@@ -19,9 +19,14 @@
     "inflection": "1.1.1"
   },
   "devDependencies": {
+    "nodeunit": "0.7.4",
+    "rimraf": "2.0.1"
   },
   "bugs": { "url": "https://github.com/nearinfinity/node-nit/issues" },
   "licenses": [ { "type" : "MIT" } ],
   "repositories": { "type": "git", "url": "https://github.com/nearinfinity/node-nit.git" },
-  "main": "./nit.js"
+  "main": "./nit.js",
+  "scripts": {
+    "test": "nodeunit test test/actions"
+  }
 }
