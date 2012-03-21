@@ -38,6 +38,7 @@ module.exports = {
           throw err;
         }
         test.equals('Title: test', data);
+        console.log(data);
         test.done();
       });
     });

@@ -3,6 +3,7 @@
 var nit = require('../index');
 var path = require('path');
 var rimraf = require('rimraf');
+var objectUtils = require('../lib/util/object');
 
 exports.createTempNitDirectory = function (options, callback) {
   options.taskPrefix = options.taskPrefix || 'TEST-';
@@ -20,13 +21,31 @@ exports.createTempNitDirectory = function (options, callback) {
   });
 };
 
-exports.createTask = function (dir, callback) {
+exports.createTask = function (dir, data, callback) {
   var tracker = new nit.IssueTracker(dir);
   tracker.newTask({
     prefs: {
       user: exports.getTestUser()
     }
-  }, callback);
+  }, function (err, task) {
+    if (err) {
+      return callback(err);
+    }
+    tracker.getOpenTask(task.id, function (err, task) {
+      if (err) {
+        return callback(err);
+      }
+
+      objectUtils.update(task, data);
+
+      task.save(function (err) {
+        if (err) {
+          return callback(err);
+        }
+        callback(null, task);
+      });
+    });
+  });
 };
 
 exports.getTestUser = function () {

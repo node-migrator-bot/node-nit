@@ -1,6 +1,6 @@
 'use strict';
 
-var ClaimAction = require('../../lib/actions/claim');
+var EditAction = require('../../lib/actions/edit');
 var nit = require('../../index');
 var nitHelpers = require('../../testHelpers/nitHelpers');
 var fs = require('fs');
@@ -30,7 +30,7 @@ module.exports = {
 
   'claim task': function (test) {
     var self = this;
-    var action = new ClaimAction();
+    var action = new EditAction();
     var prefs = {
       user: nitHelpers.getTestUser()
     };
@@ -38,7 +38,10 @@ module.exports = {
       verbose: true,
       args: [
         this.task.id
-      ]
+      ],
+      testOpen: function (task, callback) {
+        fs.writeFile(task.filename, "Title: test\nModified Date: 1/1/2012 05:15:43 PM\n", callback);
+      }
     };
     var tracker = new nit.IssueTracker(this.dir);
     action.cliRun(prefs, commander, tracker, function (err) {
@@ -49,8 +52,18 @@ module.exports = {
         if (err) {
           throw err;
         }
+
         test.ok(data.indexOf('Modified Date: 2/1/2011 00:00:00 AM') < 0);
-        test.ok(data.indexOf('Assigned To: test user <test@user.com>') > 0);
+        test.ok(data.indexOf('Modified Date: 1/1/2012 05:15:43 PM') < 0);
+
+        var expected = [
+          "Title: test",
+          "Modified Date: 3/21/2012 05:15:43 PM",
+          ""
+        ].join('\n');
+        expected = nitHelpers.replaceDates(expected);
+        data = nitHelpers.replaceDates(data);
+        test.equals(expected, data);
         console.log(data);
         test.done();
       });
