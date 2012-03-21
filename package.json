@@ -1,9 +1,9 @@
 {
-  "name": "issuetracker",
+  "name": "nit",
   "description": "Text file based issue tracker.",
   "author": "Joe Ferner <joe.ferner@nearinfinity.com>",
-  "keywords": ["task", "agile", "issue", "tracker"],
-  "homepage": "https://github.com/nearinfinity/node-issuetracker",
+  "keywords": ["task", "agile", "issue", "tracker", "nit"],
+  "homepage": "https://github.com/nearinfinity/node-nit",
   "version": "0.0.1",
   "engines": { "node" : ">=0.6.0" },
   "maintainers": [
@@ -20,8 +20,8 @@
   },
   "devDependencies": {
   },
-  "bugs": { "url": "https://github.com/nearinfinity/node-issuetracker/issues" },
+  "bugs": { "url": "https://github.com/nearinfinity/node-nit/issues" },
   "licenses": [ { "type" : "MIT" } ],
-  "repositories": { "type": "git", "url": "https://github.com/nearinfinity/node-issuetracker.git" },
-  "main": "./issuetracker.js"
+  "repositories": { "type": "git", "url": "https://github.com/nearinfinity/node-nit.git" },
+  "main": "./nit.js"
 }
