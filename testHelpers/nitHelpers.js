@@ -19,3 +19,19 @@ exports.createTempNitDirectory = function (options, callback) {
     });
   });
 };
+
+exports.createTask = function (dir, callback) {
+  var tracker = new nit.IssueTracker(dir);
+  tracker.newTask({
+    prefs: {
+      user: exports.getTestUser()
+    }
+  }, callback);
+};
+
+exports.getTestUser = function () {
+  return nit.User.fromJson({
+    name: 'test user',
+    email: 'test@user.com'
+  });
+};
