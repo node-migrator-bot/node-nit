@@ -31,10 +31,8 @@ module.exports = {
   'comment task': function (test) {
     var self = this;
     var action = new CommentAction();
-    var prefs = {
-      user: nitHelpers.getTestUser()
-    };
-    var commander = {
+    var options = {
+      user: nitHelpers.getTestUser(),
       verbose: true,
       args: [
         this.task.id,
@@ -42,7 +40,7 @@ module.exports = {
       ]
     };
     var tracker = new nit.IssueTracker(this.dir);
-    action.cliRun(prefs, commander, tracker, function (err) {
+    action.cliRun(tracker, options, function (err) {
       if (err) {
         throw err;
       }

@@ -19,15 +19,14 @@ module.exports = {
 
   'add task': function (test) {
     var action = new AddAction();
-    var prefs = {};
-    var commander = {
+    var options = {
       verbose: true,
       testOpen: function (task, callback) {
         fs.writeFile(task.filename, "Title: test\nzzz", callback);
       }
     };
     var tracker = new nit.IssueTracker(this.dir);
-    action.cliRun(prefs, commander, tracker, function (err, task) {
+    action.cliRun(tracker, options, function (err, task) {
       if (err) {
         throw err;
       }

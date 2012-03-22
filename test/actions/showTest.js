@@ -1,6 +1,6 @@
 'use strict';
 
-var ClaimAction = require('../../lib/actions/claim');
+var ShowAction = require('../../lib/actions/show');
 var nit = require('../../index');
 var nitHelpers = require('../../testHelpers/nitHelpers');
 var fs = require('fs');
@@ -28,9 +28,9 @@ module.exports = {
     });
   },
 
-  'claim task': function (test) {
+  'show single task': function (test) {
     var self = this;
-    var action = new ClaimAction();
+    var action = new ShowAction();
     var options = {
       user: nitHelpers.getTestUser(),
       verbose: true,
@@ -43,15 +43,8 @@ module.exports = {
       if (err) {
         throw err;
       }
-      fs.readFile(self.task.filename, 'utf8', function (err, data) {
-        if (err) {
-          throw err;
-        }
-        test.ok(data.indexOf('Modified Date: 2/1/2011 00:00:00 AM') < 0);
-        test.ok(data.indexOf('Assigned To: test user <test@user.com>') > 0);
-        console.log(data);
-        test.done();
-      });
+
+      test.done();
     });
   }
 };
