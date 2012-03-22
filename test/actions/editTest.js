@@ -28,7 +28,7 @@ module.exports = {
     });
   },
 
-  'claim task': function (test) {
+  'edit task': function (test) {
     var self = this;
     var action = new EditAction();
     var prefs = {
@@ -58,6 +58,46 @@ module.exports = {
 
         var expected = [
           "Title: test",
+          "Modified Date: 3/21/2012 05:15:43 PM",
+          ""
+        ].join('\n');
+        expected = nitHelpers.replaceDates(expected);
+        data = nitHelpers.replaceDates(data);
+        test.equals(expected, data);
+        console.log(data);
+        test.done();
+      });
+    });
+  },
+
+  'edit task with invalid line': function (test) {
+    var self = this;
+    var action = new EditAction();
+    var prefs = {
+      user: nitHelpers.getTestUser()
+    };
+    var commander = {
+      verbose: true,
+      args: [
+        this.task.id
+      ],
+      testOpen: function (task, callback) {
+        fs.writeFile(task.filename, "Title: test\nzzzz\nModified Date: 1/1/2012 05:15:43 PM\n", callback);
+      }
+    };
+    var tracker = new nit.IssueTracker(this.dir);
+    action.cliRun(prefs, commander, tracker, function (err) {
+      if (err) {
+        throw err;
+      }
+      fs.readFile(self.task.filename, 'utf8', function (err, data) {
+        if (err) {
+          throw err;
+        }
+
+        var expected = [
+          "Title: test",
+          "zzzz",
           "Modified Date: 3/21/2012 05:15:43 PM",
           ""
         ].join('\n');

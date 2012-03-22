@@ -23,7 +23,7 @@ module.exports = {
     var commander = {
       verbose: true,
       testOpen: function (task, callback) {
-        fs.writeFile(task.filename, "Title: test", callback);
+        fs.writeFile(task.filename, "Title: test\nzzz", callback);
       }
     };
     var tracker = new nit.IssueTracker(this.dir);
@@ -37,7 +37,7 @@ module.exports = {
         if (err) {
           throw err;
         }
-        test.equals('Title: test', data);
+        test.equals('Title: test\nzzz', data);
         console.log(data);
         test.done();
       });
