@@ -16,7 +16,8 @@
     "async": "0.1.18",
     "ejs": "0.6.1",
     "extension": "git://github.com/nearinfinity/node-extension.git",
-    "inflection": "1.1.1"
+    "inflection": "1.1.1",
+    "express": "2.5.8"
   },
   "devDependencies": {
     "nodeunit": "0.7.4",

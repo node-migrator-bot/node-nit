@@ -50,7 +50,6 @@ module.exports = {
         }
 
         test.ok(data.indexOf('Modified Date: 2/1/2011 00:00:00 AM') < 0);
-
         var expected = [
           "Title: ",
           "Status: Open",
@@ -60,6 +59,7 @@ module.exports = {
           "Modified By: test user <test@user.com>",
           "Modified Date: 3/21/2012 05:15:43 PM",
           "Description: ",
+          "   ",
           "Comments:",
           " - 3/21/2012 05:15:43 PM: test user <test@user.com>: first comment",
           ""

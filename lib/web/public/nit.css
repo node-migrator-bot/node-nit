@@ -1,0 +1,24 @@
+#tasks {
+
+}
+
+#tasks tr {
+    cursor: pointer;
+}
+
+.formField {
+
+}
+
+.formFieldTitle {
+
+}
+
+.formFieldValue {
+    margin-left: 1em;
+}
+
+.formFieldValue ul {
+    margin-top: 0;
+    padding-left: 1em;
+}
