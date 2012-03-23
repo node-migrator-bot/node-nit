@@ -1,5 +1,27 @@
-#tasks {
+body {
+    margin: 0;
+}
 
+#header {
+    background-color: #777777;
+    height: 75px;
+}
+
+#logo {
+}
+
+#ribbon {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+
+#content {
+    margin: 1em;
+}
+
+#tasks {
 }
 
 #tasks tr {
@@ -40,4 +62,8 @@
 .formFieldValue ul {
     margin-top: 0;
     padding-left: 1em;
+}
+
+a img {
+    border: none !important;
 }
