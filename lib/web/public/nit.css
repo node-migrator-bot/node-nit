@@ -2,6 +2,10 @@ body {
     margin: 0;
 }
 
+body, input, textarea {
+    font-family: sans-serif;
+}
+
 #header {
     background-color: #777777;
     height: 75px;
@@ -62,6 +66,25 @@ body {
 .formFieldValue ul {
     margin-top: 0;
     padding-left: 1em;
+}
+
+.formActions {
+    padding-top: 1em;
+}
+
+input[type="text"] {
+    border: 1px solid black;
+    width: 50em;
+}
+
+.emptyFieldValue {
+    color: #636363;
+    font-style: italic;
+}
+
+textarea {
+    width: 50em;
+    height: 6em;
 }
 
 a img {
