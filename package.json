@@ -15,6 +15,7 @@
     "mkdirp": "0.3.0",
     "async": "0.1.18",
     "ejs": "0.6.1",
+    "glob": "3.1.9",
     "extension": "git://github.com/nearinfinity/node-extension.git",
     "inflection": "1.1.1",
     "express": "2.5.8"
