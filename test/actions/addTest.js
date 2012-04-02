@@ -30,7 +30,7 @@ module.exports = {
       if (err) {
         throw err;
       }
-      test.equals('TEST-1', task.id);
+      test.ok(task.id.match(/TEST-[0-9]{14}/));
 
       fs.readFile(task.filename, 'utf8', function (err, data) {
         if (err) {
