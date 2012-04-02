@@ -3,7 +3,6 @@
   "description": "Text file based issue tracker.",
   "author": "Joe Ferner <joe.ferner@nearinfinity.com>",
   "keywords": ["task", "agile", "issue", "tracker", "nit"],
-  "homepage": "https://github.com/nearinfinity/node-nit",
   "version": "0.0.3",
   "engines": { "node" : ">=0.6.0" },
   "maintainers": [
@@ -25,8 +24,8 @@
     "rimraf": "2.0.1"
   },
   "bugs": { "url": "https://github.com/nearinfinity/node-nit/issues" },
-  "licenses": [ { "type" : "MIT" } ],
-  "repositories": { "type": "git", "url": "https://github.com/nearinfinity/node-nit.git" },
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/nearinfinity/node-nit.git" },
   "main": "./nit.js",
   "scripts": {
     "test": "nodeunit test test/actions"
