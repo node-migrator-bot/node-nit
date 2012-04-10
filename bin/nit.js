@@ -3,19 +3,28 @@
 'use strict';
 
 var action;
+var needHelp = false;
+var i;
 
-if (process.argv.length == 2) {
-  action = 'list';
-} else {
-  for (var i = 2; i < process.argv.length; i++) {
-    if (process.argv[i].match(/^-/)) {
-      continue;
-    }
-    action = process.argv[i];
-    process.argv.splice(i, 1);
-    break;
+for (i = 1; i < process.argv.length; i++) {
+  if (process.argv[i] === '-h' || process.argv[i] === '--help') {
+    needHelp = true;
   }
-  if (!action) {
+}
+
+for (i = 2; i < process.argv.length; i++) {
+  if (process.argv[i].match(/^-/)) {
+    continue;
+  }
+  action = process.argv[i];
+  process.argv.splice(i, 1);
+  break;
+}
+
+if (!action) {
+  if (needHelp) {
+    action = 'help';
+  } else {
     action = 'list';
   }
 }
