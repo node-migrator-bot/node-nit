@@ -16,7 +16,7 @@ if (process.argv.length == 2) {
     break;
   }
   if (!action) {
-    console.error("You must specify an action");
+    action = 'list';
   }
 }
 
